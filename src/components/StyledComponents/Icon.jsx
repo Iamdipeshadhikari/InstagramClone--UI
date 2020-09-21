@@ -13,6 +13,7 @@ export const MenuIcon = styled.a`
   i {
     color: ${(props) => props.theme.fontColor1};
     font-size: 1.1rem;
+    cursor: pointer;
     transition: all 0.3s ease-in;
 
     &:hover {

@@ -131,8 +131,8 @@ const HeaderContainer = styled.div`
 
       .notification__position {
         position: absolute;
-        top: -.5rem;
-        right: -.5rem;
+        top: -0.5rem;
+        right: -0.5rem;
       }
     }
   }

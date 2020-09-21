@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import FollowSuggestion from "./components/FollowSuggestion/FollowSuggestion";
 import Pages from "./components/Pages/Pages";
 import { SuperLightText } from "./components/StyledComponents/Text";
+import Post from "./components/Post/Post";
 
 const App = () => {
   return (
@@ -21,15 +22,22 @@ const App = () => {
         <Grid container spacing={4}>
           <Grid item md={8}>
             <Stories />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
           </Grid>
 
           <Grid item md={4}>
-            <Profile />
-            <FollowSuggestion />
-            <Pages />
-            <SuperLightText style={{ fontSize: "0.6rem", fontWeight: 300 }}>
-              2020 @ COPYRIGHT BY MANJIL JUNIOR
-            </SuperLightText>
+            <div className="Sidebar">
+              <Profile />
+              <FollowSuggestion />
+              <Pages />
+              <SuperLightText style={{ fontSize: "0.6rem", fontWeight: 300 }}>
+                2020 @ COPYRIGHT BY MANJIL JUNIOR
+              </SuperLightText>
+            </div>
           </Grid>
         </Grid>
       </div>
