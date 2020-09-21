@@ -20,7 +20,7 @@ const Profile = () => {
 export default Profile;
 
 const ProfileComponent = styled.div`
-  padding: 1.5rem;
+  padding: 1.5rem 0;
   width: 100%;
   background: transparent;
   display: flex;
