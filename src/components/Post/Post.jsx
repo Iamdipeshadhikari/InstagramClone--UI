@@ -5,10 +5,12 @@ import { DarkText } from "../StyledComponents/Text";
 import { MenuIcon } from "../StyledComponents/Icon";
 import { SecondaryInput } from "../StyledComponents/Input";
 import { SimpleButton } from "../StyledComponents/Button";
+import { Like } from "../StyledComponents/Like";
 
 const Post = () => {
-  const [slider, setSlider] = React.useState(true);
+  const [slider, setSlider] = React.useState(false);
   const [comment, setComment] = React.useState("");
+  const [like, setLike] = React.useState(null);
 
   const SliderSettings = {
     dots: false,
@@ -16,6 +18,14 @@ const Post = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const giveLikeAnimation = () => {
+    if (like) {
+      return setLike(false);
+    }
+
+    setLike(true);
   };
 
   return (
@@ -40,7 +50,7 @@ const Post = () => {
           <div className="main--slider">
             <Slider {...SliderSettings}>
               <img
-                src="https://cmsimages.tribuneindia.com/gallary_content/2020/9/2020_9$largeimg_1266302640.jpg"
+                src="https://i.pinimg.com/originals/d4/7f/ab/d47fabb6866fc7394d18e00656b38aa7.jpg"
                 alt="Sushant Singh Rajput"
               />
               <img
@@ -48,7 +58,7 @@ const Post = () => {
                 alt="Sushant Singh Rajput"
               />
               <img
-                src="https://cmsimages.tribuneindia.com/gallary_content/2020/9/2020_9$largeimg_1266302640.jpg"
+                src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
                 alt="Sushant Singh Rajput"
               />
             </Slider>
@@ -58,7 +68,7 @@ const Post = () => {
         {!slider && (
           <div className="main--photo">
             <img
-              src="https://cmsimages.tribuneindia.com/gallary_content/2020/9/2020_9$largeimg_1266302640.jpg"
+              src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
               alt="Sushant Singh Rajput"
             />
           </div>
@@ -67,7 +77,11 @@ const Post = () => {
 
       <div className="footer">
         <div className="footer--left">
-          <MenuIcon as="span" style={{ marginRight: "1rem" }}>
+          <MenuIcon
+            onClick={giveLikeAnimation}
+            as="span"
+            style={{ marginRight: "1rem" }}
+          >
             <i class="fas fa-heart"></i>
           </MenuIcon>
           <MenuIcon as="span" style={{ marginRight: "1rem" }}>
@@ -85,7 +99,13 @@ const Post = () => {
       </div>
 
       <div className="engagement">
-        <DarkText style={{ marginLeft: "1rem", marginBottom: ".5rem" }}>
+        <DarkText
+          style={{
+            marginLeft: "1rem",
+            marginBottom: ".5rem",
+            fontSize: "0.5rem",
+          }}
+        >
           15 Likes
         </DarkText>
 
@@ -105,6 +125,12 @@ const Post = () => {
         )}
         {comment === "" && <button className="Disabled">Post</button>}
       </SecondaryInput>
+
+      <Like>
+        {like && <i class="fas fa-heart showAnimation"></i>}
+        {like === null && <i class="fas fa-heart"></i>}
+        {like === false && <i class="fas fa-heart-broken removeAnimation"></i>}
+      </Like>
     </PostContainer>
   );
 };
@@ -116,6 +142,7 @@ const PostContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 1.5rem;
   padding: 0.5rem 0 0 0;
+  position: relative;
 
   /* Header Class */
   .header {
@@ -155,9 +182,13 @@ const PostContainer = styled.div`
 
     &--photo {
       width: 100%;
-      background-size: cover;
-      background-position: center;
-      object-fit: cover;
+
+      img {
+        background-size: cover;
+        background-position: center;
+        object-fit: cover;
+        width: 100%;
+      }
     }
 
     &--slider {
