@@ -8,8 +8,8 @@ import Stories from "./components/Stories/Stories";
 import Profile from "./components/Profile/Profile";
 import FollowSuggestion from "./components/FollowSuggestion/FollowSuggestion";
 import Pages from "./components/Pages/Pages";
-import { SuperLightText } from "./components/StyledComponents/Text";
 import Post from "./components/Post/Post";
+import { SuperLightText } from "./components/StyledComponents/Text";
 
 const App = () => {
   return (
@@ -41,6 +41,7 @@ const App = () => {
           </Grid>
         </Grid>
       </div>
+
     </ThemeProvider>
   );
 };

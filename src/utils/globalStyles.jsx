@@ -20,6 +20,7 @@ export default createGlobalStyle`
     body {
         background-color: ${(props) => props.theme.whiteColor};
         overflow-x: hidden;
+        position: relative;
     }
 
     .mainContainer {

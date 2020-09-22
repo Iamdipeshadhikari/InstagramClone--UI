@@ -6,11 +6,14 @@ import { MenuIcon } from "../StyledComponents/Icon";
 import { SecondaryInput } from "../StyledComponents/Input";
 import { SimpleButton } from "../StyledComponents/Button";
 import { Like } from "../StyledComponents/Like";
+import Overlay from "../Overlay/Overlay";
+import Modal from "../Modal/Modal";
 
 const Post = () => {
-  const [slider, setSlider] = React.useState(false);
+  const [slider, setSlider] = React.useState(true);
   const [comment, setComment] = React.useState("");
   const [like, setLike] = React.useState(null);
+  const [showModal, setShowModal] = React.useState(false);
 
   const SliderSettings = {
     dots: false,
@@ -28,110 +31,124 @@ const Post = () => {
     setLike(true);
   };
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <PostContainer>
-      <div className="header">
-        <div className="header--left">
-          <img
-            src="https://i0.wp.com/odishabytes.com/wp-content/uploads/2020/08/15_06_2020-sushant-singh-rajput_20394126_164957773.jpg?resize=650%2C430&ssl=1"
-            alt="Sushant Singh Rajput"
-          />
+    <>
+      <Overlay open={showModal ? true : false} closeModal={closeModal} />
+      {showModal && <Modal closeModal={closeModal} />}
+      <PostContainer>
+        <div className="header">
+          <div className="header--left">
+            <img
+              src="https://i0.wp.com/odishabytes.com/wp-content/uploads/2020/08/15_06_2020-sushant-singh-rajput_20394126_164957773.jpg?resize=650%2C430&ssl=1"
+              alt="Sushant Singh Rajput"
+            />
 
-          <DarkText>Sushant singh rajput</DarkText>
+            <DarkText>Sushant singh rajput</DarkText>
+          </div>
+
+          <div onClick={openModal} className="header--right">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
         </div>
 
-        <div className="header--right">
-          <i class="fas fa-ellipsis-v"></i>
-        </div>
-      </div>
+        <div className="main">
+          {slider && (
+            <div className="main--slider">
+              <Slider {...SliderSettings}>
+                <img
+                  src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
+                  alt="Sushant Singh Rajput"
+                />
+                <img
+                  src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
+                  alt="Sushant Singh Rajput"
+                />
+                <img
+                  src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
+                  alt="Sushant Singh Rajput"
+                />
+              </Slider>
+            </div>
+          )}
 
-      <div className="main">
-        {slider && (
-          <div className="main--slider">
-            <Slider {...SliderSettings}>
-              <img
-                src="https://i.pinimg.com/originals/d4/7f/ab/d47fabb6866fc7394d18e00656b38aa7.jpg"
-                alt="Sushant Singh Rajput"
-              />
-              <img
-                src="https://cmsimages.tribuneindia.com/gallary_content/2020/9/2020_9$largeimg_1266302640.jpg"
-                alt="Sushant Singh Rajput"
-              />
+          {!slider && (
+            <div className="main--photo">
               <img
                 src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
                 alt="Sushant Singh Rajput"
               />
-            </Slider>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
 
-        {!slider && (
-          <div className="main--photo">
-            <img
-              src="https://www.rd.com/wp-content/uploads/2018/03/rdj.jpg"
-              alt="Sushant Singh Rajput"
-            />
+        <div className="footer">
+          <div className="footer--left">
+            <MenuIcon
+              onClick={giveLikeAnimation}
+              as="span"
+              style={{ marginRight: "1rem" }}
+            >
+              <i class="fas fa-heart"></i>
+            </MenuIcon>
+            <MenuIcon as="span" style={{ marginRight: "1rem" }}>
+              <i class="fas fa-comment"></i>
+            </MenuIcon>
+            <MenuIcon as="span" style={{ marginRight: "1rem" }}>
+              <i class="fas fa-paper-plane"></i>
+            </MenuIcon>
           </div>
-        )}
-      </div>
+          <div className="footer--right">
+            <MenuIcon as="span">
+              <i class="fas fa-bookmark"></i>
+            </MenuIcon>
+          </div>
+        </div>
 
-      <div className="footer">
-        <div className="footer--left">
-          <MenuIcon
-            onClick={giveLikeAnimation}
-            as="span"
-            style={{ marginRight: "1rem" }}
+        <div className="engagement">
+          <DarkText
+            style={{
+              marginLeft: "1rem",
+              marginBottom: ".5rem",
+              fontSize: "0.5rem",
+            }}
           >
-            <i class="fas fa-heart"></i>
-          </MenuIcon>
-          <MenuIcon as="span" style={{ marginRight: "1rem" }}>
-            <i class="fas fa-comment"></i>
-          </MenuIcon>
-          <MenuIcon as="span" style={{ marginRight: "1rem" }}>
-            <i class="fas fa-paper-plane"></i>
-          </MenuIcon>
+            15 Likes
+          </DarkText>
+
+          <div className="borderbottm"></div>
         </div>
-        <div className="footer--right">
-          <MenuIcon as="span">
-            <i class="fas fa-bookmark"></i>
-          </MenuIcon>
-        </div>
-      </div>
 
-      <div className="engagement">
-        <DarkText
-          style={{
-            marginLeft: "1rem",
-            marginBottom: ".5rem",
-            fontSize: "0.5rem",
-          }}
-        >
-          15 Likes
-        </DarkText>
+        <SecondaryInput>
+          <input
+            type="text"
+            placeholder="Add a comment"
+            name="comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          {comment !== "" && (
+            <SimpleButton className="Enabled">Post</SimpleButton>
+          )}
+          {comment === "" && <button className="Disabled">Post</button>}
+        </SecondaryInput>
 
-        <div className="borderbottm"></div>
-      </div>
-
-      <SecondaryInput>
-        <input
-          type="text"
-          placeholder="Add a comment"
-          name="comment"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        {comment !== "" && (
-          <SimpleButton className="Enabled">Post</SimpleButton>
-        )}
-        {comment === "" && <button className="Disabled">Post</button>}
-      </SecondaryInput>
-
-      <Like>
-        {like && <i class="fas fa-heart showAnimation"></i>}
-        {like === null && <i class="fas fa-heart"></i>}
-        {like === false && <i class="fas fa-heart-broken removeAnimation"></i>}
-      </Like>
-    </PostContainer>
+        <Like>
+          {like && <i class="fas fa-heart showAnimation"></i>}
+          {like === null && <i class="fas fa-heart"></i>}
+          {like === false && (
+            <i class="fas fa-heart-broken removeAnimation"></i>
+          )}
+        </Like>
+      </PostContainer>
+    </>
   );
 };
 
@@ -171,6 +188,7 @@ const PostContainer = styled.div`
       i {
         color: ${(props) => props.theme.fontColor1};
         font-size: 0.8rem;
+        cursor: pointer;
       }
     }
   }

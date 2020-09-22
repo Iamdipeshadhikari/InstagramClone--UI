@@ -20,5 +20,14 @@ export const SuperLightText = styled.p`
   color: #bebebe;
   font-size: 0.5rem;
   text-transform: capitalize;
+`;
+
+export const ColorText = styled.p`
+  font-weight: bold;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 0.7rem;
+  text-transform: capitalize;
   text-decoration: none;
+  cursor: pointer;
+  color: #ff2e63;
 `;

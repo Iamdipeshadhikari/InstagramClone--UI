@@ -15,9 +15,9 @@ export const Like = styled.div`
   }
 
   .showAnimation {
-    animation: ${LikeAnimation} 1s ease-in-out;
+    animation: ${LikeAnimation} .8s ease-in-out;
   }
   .removeAnimation {
-    animation: ${LikeAnimation} 1s ease-in-out;
+    animation: ${LikeAnimation} .8s ease-in-out;
   }
 `;
