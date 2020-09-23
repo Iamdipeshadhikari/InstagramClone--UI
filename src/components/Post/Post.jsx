@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
-import { DarkText } from "../StyledComponents/Text";
+import { DarkText, ColorText } from "../StyledComponents/Text";
 import { MenuIcon } from "../StyledComponents/Icon";
 import { SecondaryInput } from "../StyledComponents/Input";
 import { SimpleButton } from "../StyledComponents/Button";
@@ -42,7 +42,17 @@ const Post = () => {
   return (
     <>
       <Overlay open={showModal ? true : false} closeModal={closeModal} />
-      {showModal && <Modal closeModal={closeModal} />}
+      {showModal && (
+        <Modal closeModal={closeModal}>
+          <ColorText className="text">Report</ColorText>
+          <ColorText className="text">Unfollow</ColorText>
+          <ColorText className="text">delete post</ColorText>
+          <DarkText className="text">view post</DarkText>
+          <DarkText onClick={closeModal} className="lastText">
+            cancel
+          </DarkText>
+        </Modal>
+      )}
       <PostContainer>
         <div className="header">
           <div className="header--left">

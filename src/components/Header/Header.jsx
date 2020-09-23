@@ -1,65 +1,87 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Overlay from "../Overlay/Overlay";
+import Modal from "../Modal/Modal";
 import { PrimaryInput } from "../StyledComponents/Input";
 import { MenuIcon } from "../StyledComponents/Icon";
 import { Notification } from "../StyledComponents/Notification";
+import { LightText } from "../StyledComponents/Text";
 
 const Header = () => {
   const [search, setSearch] = useState("");
+  const [showModal, setShowModal] = React.useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
-    <HeaderContainer>
-      <div className="content">
-        <div className="logo">Instagram</div>
+    <>
+      <Overlay open={showModal ? true : false} closeModal={closeModal} />
+      {showModal && (
+        <Modal closeModal={closeModal}>
+          <LightText style={{ padding: "3rem 0" }}>
+            This is just Instagram design clone
+          </LightText>
+        </Modal>
+      )}
+      <HeaderContainer>
+        <div className="content">
+          <div className="logo">Instagram</div>
 
-        <div className="search">
-          <PrimaryInput
-            type="text"
-            name="search"
-            placeholder="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="search">
+            <PrimaryInput
+              type="text"
+              name="search"
+              placeholder="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
-          {search !== "" && (
-            <span className="close" onClick={() => setSearch("")}>
-              <i class="fas fa-times"></i>
-            </span>
-          )}
+            {search !== "" && (
+              <span className="close" onClick={() => setSearch("")}>
+                <i class="fas fa-times"></i>
+              </span>
+            )}
+          </div>
+
+          <div className="menus">
+            <li>
+              <MenuIcon onClick={openModal} href="#">
+                <i class="fas fa-home"></i>
+              </MenuIcon>
+              <Notification className="notification__position">15</Notification>
+            </li>
+
+            <li>
+              <MenuIcon onClick={openModal} href="#">
+                <i class="fas fa-paper-plane"></i>
+              </MenuIcon>
+              <Notification className="notification__position">8</Notification>
+            </li>
+
+            <li>
+              <MenuIcon onClick={openModal} href="#">
+                <i class="fas fa-heart"></i>
+              </MenuIcon>
+            </li>
+
+            <li>
+              <MenuIcon onClick={openModal} href="#">
+                <img
+                  src="https://a.wattpad.com/cover/115784134-352-k808919.jpg"
+                  alt="RDJ profile"
+                />
+              </MenuIcon>
+            </li>
+          </div>
         </div>
-
-        <div className="menus">
-          <li>
-            <MenuIcon href="#">
-              <i class="fas fa-home"></i>
-            </MenuIcon>
-            <Notification className="notification__position">15</Notification>
-          </li>
-
-          <li>
-            <MenuIcon href="#">
-              <i class="fas fa-paper-plane"></i>
-            </MenuIcon>
-            <Notification className="notification__position">8</Notification>
-          </li>
-
-          <li>
-            <MenuIcon href="#">
-              <i class="fas fa-heart"></i>
-            </MenuIcon>
-          </li>
-
-          <li>
-            <MenuIcon href="#">
-              <img
-                src="https://a.wattpad.com/cover/115784134-352-k808919.jpg"
-                alt="RDJ profile"
-              />
-            </MenuIcon>
-          </li>
-        </div>
-      </div>
-    </HeaderContainer>
+      </HeaderContainer>
+    </>
   );
 };
 

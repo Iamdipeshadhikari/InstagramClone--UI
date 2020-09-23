@@ -2,16 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { ColorText, DarkText } from "../StyledComponents/Text";
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ children }) => {
   return (
     <ModalContainer>
-      <ColorText className="text">Report</ColorText>
-      <ColorText className="text">Unfollow</ColorText>
-      <ColorText className="text">delete post</ColorText>
-      <DarkText className="text">view post</DarkText>
-      <DarkText onClick={closeModal} className="lastText">
-        cancel
-      </DarkText>
+     {children}
     </ModalContainer>
   );
 };
