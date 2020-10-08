@@ -25,6 +25,15 @@ export default createGlobalStyle`
 
     .mainContainer {
         width: 65%;
+        display: flex;
         margin: 1.5rem auto;
+        justify-content: space-between;
+    }
+
+    .gridOne {
+        width: 65%;
+    }
+    .gridTwo {
+        width: 30%;
     }
 `;

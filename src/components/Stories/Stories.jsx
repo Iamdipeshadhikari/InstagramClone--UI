@@ -6,15 +6,14 @@ import { Story } from "../StyledComponents/Story";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Stories = () => {
   const SliderSettings = {
     dots: false,
     infinity: false,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToShow: 5,
+    slidesToScroll: 2,
   };
 
   const FormatUsername = (str) => {
@@ -124,7 +123,7 @@ export default Stories;
 
 const StoriesContainer = styled.div`
   width: 100%;
-  padding: 1.5rem;
+  padding: 1.2rem;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
 
@@ -135,7 +134,7 @@ const StoriesContainer = styled.div`
     width: 1.2rem;
     color: #999;
     border-radius: 50%;
-    z-index: 2;
+    transform: translateY(-1rem);
 
     &:before {
       font-family: "Font Awesome 5 Free";

@@ -3,7 +3,6 @@ import { ThemeProvider } from "styled-components";
 import Header from "./components/Header/Header";
 import GlobalStyles from "./utils/globalStyles";
 import InstagramTheme from "./utils/theme";
-import Grid from "@material-ui/core/Grid";
 import Stories from "./components/Stories/Stories";
 import Profile from "./components/Profile/Profile";
 import FollowSuggestion from "./components/FollowSuggestion/FollowSuggestion";
@@ -19,29 +18,26 @@ const App = () => {
       {/* Components */}
       <Header />
       <div className="mainContainer">
-        <Grid container spacing={4}>
-          <Grid item md={8}>
-            <Stories />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-          </Grid>
+        <div className="gridOne">
+          <Stories />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </div>
 
-          <Grid item md={4}>
-            <div className="Sidebar">
-              <Profile />
-              <FollowSuggestion />
-              <Pages />
-              <SuperLightText style={{ fontSize: "0.6rem", fontWeight: 300 }}>
-                2020 @ COPYRIGHT BY MANJIL JUNIOR
-              </SuperLightText>
-            </div>
-          </Grid>
-        </Grid>
+        <div className="gridTwo">
+          <div className="Sidebar">
+            <Profile />
+            <FollowSuggestion />
+            <Pages />
+            <SuperLightText style={{ fontSize: "0.6rem", fontWeight: 300 }}>
+              2020 @ COPYRIGHT BY MANJIL JUNIOR
+            </SuperLightText>
+          </div>
+        </div>
       </div>
-
     </ThemeProvider>
   );
 };
